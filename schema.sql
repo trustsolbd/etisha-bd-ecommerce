@@ -1,0 +1,28 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE IF NOT EXISTS products (
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ name TEXT NOT NULL,
+ sku TEXT NOT NULL UNIQUE,
+ category TEXT NOT NULL,
+ price INTEGER NOT NULL DEFAULT 0,
+ compare_price INTEGER,
+ stock INTEGER NOT NULL DEFAULT 0,
+ variants TEXT DEFAULT '',
+ image TEXT DEFAULT '',
+ description TEXT DEFAULT '',
+ active INTEGER NOT NULL DEFAULT 1,
+ created_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS orders (
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ order_number TEXT NOT NULL UNIQUE,
+ customer_name TEXT NOT NULL,
+ phone TEXT NOT NULL,
+ address TEXT NOT NULL,
+ district TEXT DEFAULT '',
+ items_json TEXT NOT NULL,
+ total INTEGER NOT NULL,
+ payment_method TEXT NOT NULL DEFAULT 'COD',
+ status TEXT NOT NULL DEFAULT 'Pending',
+ created_at TEXT NOT NULL
+);
